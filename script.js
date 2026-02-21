@@ -58,5 +58,5 @@ form.addEventListener("submit", function (event) {
   attendeeInfo.textContent = name + " - " + teamName;
   attendeeList.appendChild(attendeeInfo);
 
-  //form.reset();
+  form.reset();
 });

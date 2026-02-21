@@ -5,6 +5,7 @@ const teamSelect = document.getElementById("teamSelect");
 let count = 0;
 const maxCount = 50;
 localStorage.setItem("storedCount", count);
+console.log("?" + localStorage.key(0));
 
 const attendeeList = document.getElementById("attendeeList");
 

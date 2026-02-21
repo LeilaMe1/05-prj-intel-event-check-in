@@ -4,6 +4,9 @@ const teamSelect = document.getElementById("teamSelect");
 
 let count = 0;
 const maxCount = 50;
+localStorage.setItem("storedCount", count);
+
+const attendeeList = document.getElementById("attendeeList");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -14,8 +17,11 @@ form.addEventListener("submit", function (event) {
 
   console.log(name, teamValue, teamName);
 
+  count = localStorage.getItem("storedCount");
+
   count++;
   console.log("total checkins: ", count);
+  localStorage.setItem("storedCount", count);
 
   const percentage = Math.round((count / maxCount) * 100) + "%";
   console.log(`percentage ${percentage}`);
@@ -38,5 +44,19 @@ form.addEventListener("submit", function (event) {
   greeting.textContent = message;
   greeting.style.display = "block";
 
-  form.reset();
+  if (count == maxCount) {
+    // display success message
+    const celebration = document.getElementById("celebration");
+    celebration.textContent =
+      "Check-In Goal Reached!!! Congrats to " + teamName;
+  }
+
+  //const attendeeInfo = document.getElementById("attendeeInfo");
+  //attendeeInfo.innerHTML = attendeeInfo.textContent + "<br>" + name + " - " + teamName;
+
+  const attendeeInfo = document.createElement("li");
+  attendeeInfo.textContent = name + " - " + teamName;
+  attendeeList.appendChild(attendeeInfo);
+
+  //form.reset();
 });
